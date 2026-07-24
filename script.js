@@ -1,6 +1,6 @@
 const TIMEZONE = "Asia/Bangkok";
 const WORK_START_HOUR = 9;
-const WORK_START_MINUTE = 0;
+const WORK_START_MINUTE = 30;
 const TARGET_HOUR = 17;
 const TARGET_MINUTE = 30;
 
@@ -11,54 +11,76 @@ const statusTextEl = document.getElementById("statusText");
 const shareButton = document.getElementById("shareButton");
 const progressFillEl = document.getElementById("progressFill");
 const progressPercentEl = document.getElementById("progressPercent");
+const progressStatusEl = document.getElementById("progressStatus");
 const memeTitleEl = document.getElementById("memeTitle");
 const memeTextEl = document.getElementById("memeText");
-const memeEmbedEl = document.getElementById("memeEmbed");
+const memeImageEl = document.getElementById("memeImage");
 const memeCaptionEl = document.getElementById("memeCaption");
 const memeLinkEl = document.getElementById("memeLink");
+const shuffleMemeButton = document.getElementById("shuffleMemeButton");
+
+const MEME_POOL = [
+  {
+    image:
+      "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/PFU8k1XXgytJVWZykC/giphy.gif",
+    link: "https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99",
+    caption: "สุ่มจากกองมีมเลิกงาน: วิญญาณพร้อมกลับบ้านก่อนตัวจริง",
+  },
+  {
+    image:
+      "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/q4QfjGnFKryzjosj1g/giphy.gif",
+    link: "https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99",
+    caption: "สุ่มจากกองมีมเลิกงาน: ถ้า message ใหม่เด้งอีกคือร้องจริง",
+  },
+  {
+    image:
+      "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xUA7b30EbtkaMHvRgk/giphy.gif",
+    link: "https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99",
+    caption: "สุ่มจากกองมีมเลิกงาน: ใกล้เวลาแล้ว พลังเต้นเริ่มมา",
+  },
+  {
+    image:
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0MYt5jPR6QX5pnqM/giphy.gif",
+    link: "https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99",
+    caption: "สุ่มจากกองมีมเลิกงาน: จิตใจ checkout ไปแล้ว เหลือแต่ cursor",
+  },
+  {
+    image:
+      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6ZsY8f6iY7Rr5fDG/giphy.gif",
+    link: "https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99",
+    caption: "สุ่มจากกองมีมเลิกงาน: อีกนิดเดียวก็ได้ประกาศอิสรภาพ",
+  },
+];
 
 const MEME_STAGES = [
   {
     min: 0,
     title: "กำลังบูตสมองทีมแชตบอต",
     text: "กาแฟเข้าระบบแล้ว เหลือแค่ประชุมกับบั๊กให้จบก่อน 17:30",
-    caption: "Mood ตอนนี้: caffeinated but fragile",
-    embed: "https://giphy.com/embed/9UTV80HsdjDuNFOUdU",
-    link: "https://giphy.com/gifs/Barbie-barbie-barbieitt-it-takes-two-9UTV80HsdjDuNFOUdU",
   },
   {
     min: 25,
     title: "เริ่มไหลลื่น แต่ยังไม่กล้าปิด Slack",
     text: "งานเดินแล้ว แต่ notification ยังพร้อมโผล่มาได้ทุกเมื่อ",
-    caption: "Mood ตอนนี้: one more ping and it's over",
-    embed: "https://giphy.com/embed/3o7TKTDn976rzVgky4",
-    link: "https://giphy.com/gifs/reactiongifs-3o7TKTDn976rzVgky4",
   },
   {
     min: 50,
     title: "เข้าโหมดนับชั่วโมงแบบมืออาชีพ",
     text: "ทุกคนเริ่มพูดคำว่า 'อันนี้ขอพรุ่งนี้ได้ไหม' มากขึ้นอย่างมีนัยสำคัญ",
-    caption: "Mood ตอนนี้: productivity กับความง่วงกำลังตีสูสี",
-    embed: "https://giphy.com/embed/l4FGpP4lxGGgK5CBW",
-    link: "https://giphy.com/gifs/theoffice-the-office-tv-l4FGpP4lxGGgK5CBW",
   },
   {
     min: 75,
     title: "เก็บของในใจไปแล้วครึ่งทีม",
     text: "แท็บงานยังเปิดอยู่ แต่จิตวิญญาณยืนรอลิฟต์ตั้งแต่เมื่อกี้แล้ว",
-    caption: "Mood ตอนนี้: almost weekend energy",
-    embed: "https://giphy.com/embed/LXfpI3nNbfCm91llsA",
-    link: "https://giphy.com/gifs/LXfpI3nNbfCm91llsA",
   },
   {
     min: 100,
     title: "เลิกงานแล้ว ทีมแชตบอตเป็นอิสระ",
     text: "ปิดโน้ตบุ๊กได้แบบไม่ต้องรู้สึกผิด แล้วค่อยสู้กับ prompt ต่อพรุ่งนี้",
-    caption: "Mood ตอนนี้: it's friiidaaay",
-    embed: "https://giphy.com/embed/393kszFi2PuCEopURN",
-    link: "https://giphy.com/gifs/its-friday-393kszFi2PuCEopURN",
   },
 ];
+
+let activeMemeIndex = -1;
 
 function getBangkokDateParts(date = new Date()) {
   const formatter = new Intl.DateTimeFormat("en-CA", {
@@ -146,6 +168,25 @@ function getWorkdayProgress() {
   return ((localNowMs - startMs) / spanMs) * 100;
 }
 
+function setRandomMeme() {
+  if (MEME_POOL.length === 0) {
+    return;
+  }
+
+  let nextIndex = Math.floor(Math.random() * MEME_POOL.length);
+
+  if (MEME_POOL.length > 1 && nextIndex === activeMemeIndex) {
+    nextIndex = (nextIndex + 1) % MEME_POOL.length;
+  }
+
+  activeMemeIndex = nextIndex;
+
+  const meme = MEME_POOL[nextIndex];
+  memeImageEl.src = meme.image;
+  memeLinkEl.href = meme.link;
+  memeCaptionEl.textContent = meme.caption;
+}
+
 function updateProgress(progress) {
   const rounded = Math.round(progress);
   progressFillEl.style.width = `${Math.max(rounded, 8)}%`;
@@ -157,13 +198,18 @@ function updateProgress(progress) {
 
   memeTitleEl.textContent = stage.title;
   memeTextEl.textContent = stage.text;
-  memeCaptionEl.textContent = stage.caption;
 
-  if (memeEmbedEl.src !== stage.embed) {
-    memeEmbedEl.src = stage.embed;
+  if (rounded <= 0) {
+    progressStatusEl.textContent = "เริ่มนับหลัง 09:30";
+    return;
   }
 
-  memeLinkEl.href = stage.link;
+  if (rounded >= 100) {
+    progressStatusEl.textContent = "ถึงเส้นชัย 17:30 แล้ว";
+    return;
+  }
+
+  progressStatusEl.textContent = "กาแฟกำลังพาทีมไปสู่เวลาเลิกงาน";
 }
 
 function formatThaiDate() {
@@ -212,6 +258,8 @@ async function copyShareLink() {
 }
 
 shareButton.addEventListener("click", copyShareLink);
+shuffleMemeButton.addEventListener("click", setRandomMeme);
 
+setRandomMeme();
 updateCountdown();
 window.setInterval(updateCountdown, 1000);

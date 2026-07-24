@@ -45,7 +45,7 @@
 
             <section class="progress-section" aria-label="ความคืบหน้าของวันทำงาน">
               <div class="progress-header">
-                <p class="progress-title">Workday Progress</p>
+                <p id="progressStatus" class="progress-status">เริ่มนับหลัง 09:30</p>
                 <p id="progressPercent" class="progress-percent">0%</p>
               </div>
               <div
@@ -56,11 +56,11 @@
                 aria-valuenow="0"
               >
                 <div id="progressFill" class="progress-fill">
-                  <span class="progress-bot">BOT</span>
+                  <span class="progress-coffee">☕</span>
                 </div>
               </div>
               <div class="progress-meta">
-                <span>09:00</span>
+                <span>09:30</span>
                 <span>17:30</span>
               </div>
             </section>
@@ -87,27 +87,31 @@
             </div>
 
             <div class="meme-frame">
-              <iframe
-                id="memeEmbed"
-                class="giphy-embed"
-                src="https://giphy.com/embed/9UTV80HsdjDuNFOUdU"
-                title="Office meme"
+              <img
+                id="memeImage"
+                class="meme-image"
+                src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/PFU8k1XXgytJVWZykC/giphy.gif"
+                alt="Random quitting time meme"
                 loading="lazy"
-                allowfullscreen
-              ></iframe>
+              />
             </div>
 
             <div class="meme-footer">
               <p id="memeCaption" class="meme-caption">Mood ตอนนี้: caffeinated but fragile</p>
-              <a
-                id="memeLink"
-                class="meme-link"
-                href="https://giphy.com/gifs/Barbie-barbie-barbieitt-it-takes-two-9UTV80HsdjDuNFOUdU"
-                target="_blank"
-                rel="noreferrer"
-              >
-                เปิดมีมบน Giphy
-              </a>
+              <div class="meme-actions">
+                <button id="shuffleMemeButton" class="ghost-button" type="button">
+                  สุ่มมีมใหม่
+                </button>
+                <a
+                  id="memeLink"
+                  class="meme-link"
+                  href="https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  เปิด Giphy
+                </a>
+              </div>
             </div>
           </aside>
         </div>

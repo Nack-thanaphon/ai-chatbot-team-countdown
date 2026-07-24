@@ -19,66 +19,97 @@
   <body>
     <main class="app-shell">
       <section class="hero-card">
-        <p class="eyebrow">AI CHATBOT TEAM</p>
-        <h1>Countdown เลิกงาน</h1>
-        <p class="subtitle">
-          ปักเวลาเลิกงานไว้ที่ <strong>17:30 น.</strong> ตามเวลาไทย
-          แล้วปล่อยให้หน้านี้นับถอยหลังให้เอง
-        </p>
+        <div class="hero-grid">
+          <div class="content-column">
+            <p class="eyebrow">AI CHATBOT TEAM</p>
+            <h1>Countdown เลิกงาน</h1>
+            <p class="subtitle">
+              ปักเวลาเลิกงานไว้ที่ <strong>17:30 น.</strong> ตามเวลาไทย
+              แล้วปล่อยให้หน้านี้นับถอยหลังพร้อมพลังมีมของออฟฟิศ
+            </p>
 
-        <div class="countdown" aria-live="polite">
-          <div class="time-box">
-            <span id="hours" class="time-value">00</span>
-            <span class="time-label">ชั่วโมง</span>
-          </div>
-          <div class="time-box">
-            <span id="minutes" class="time-value">00</span>
-            <span class="time-label">นาที</span>
-          </div>
-          <div class="time-box">
-            <span id="seconds" class="time-value">00</span>
-            <span class="time-label">วินาที</span>
-          </div>
-        </div>
+            <div class="countdown" aria-live="polite">
+              <div class="time-box">
+                <span id="hours" class="time-value">00</span>
+                <span class="time-label">ชั่วโมง</span>
+              </div>
+              <div class="time-box">
+                <span id="minutes" class="time-value">00</span>
+                <span class="time-label">นาที</span>
+              </div>
+              <div class="time-box">
+                <span id="seconds" class="time-value">00</span>
+                <span class="time-label">วินาที</span>
+              </div>
+            </div>
 
-        <section class="progress-section" aria-label="ความคืบหน้าของวันทำงาน">
-          <div class="progress-header">
-            <p class="progress-title">Workday Progress</p>
-            <p id="progressPercent" class="progress-percent">0%</p>
-          </div>
-          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-            <div id="progressFill" class="progress-fill">
-              <span class="progress-bot">BOT</span>
+            <section class="progress-section" aria-label="ความคืบหน้าของวันทำงาน">
+              <div class="progress-header">
+                <p class="progress-title">Workday Progress</p>
+                <p id="progressPercent" class="progress-percent">0%</p>
+              </div>
+              <div
+                class="progress-track"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+              >
+                <div id="progressFill" class="progress-fill">
+                  <span class="progress-bot">BOT</span>
+                </div>
+              </div>
+              <div class="progress-meta">
+                <span>09:00</span>
+                <span>17:30</span>
+              </div>
+            </section>
+
+            <div class="status-panel">
+              <p id="statusText" class="status-text">กำลังคำนวณเวลา...</p>
+              <p class="timezone-pill">Timezone: Asia/Bangkok (UTC+7)</p>
+            </div>
+
+            <div class="actions">
+              <button id="shareButton" class="primary-button" type="button">
+                คัดลอกลิงก์ไว้แชร์ทีม
+              </button>
             </div>
           </div>
-          <div class="progress-meta">
-            <span>09:00</span>
-            <span>17:30</span>
-          </div>
-        </section>
 
-        <section class="meme-section" aria-live="polite">
-          <div class="meme-visual">
-            <p id="memeFace" class="meme-face">(-_-)</p>
-          </div>
-          <div class="meme-copy">
-            <p class="meme-label">Mood Progress</p>
-            <h2 id="memeTitle">กำลังบูตสมองทีมแชตบอต</h2>
-            <p id="memeText" class="meme-text">
-              กาแฟเข้าระบบแล้ว เหลือแค่ประชุมกับบั๊กให้จบก่อน 17:30
-            </p>
-          </div>
-        </section>
+          <aside class="meme-stage-card" aria-live="polite">
+            <div class="meme-copy">
+              <p class="meme-label">Live Meme Mode</p>
+              <h2 id="memeTitle">กำลังบูตสมองทีมแชตบอต</h2>
+              <p id="memeText" class="meme-text">
+                กาแฟเข้าระบบแล้ว เหลือแค่ประชุมกับบั๊กให้จบก่อน 17:30
+              </p>
+            </div>
 
-        <div class="status-panel">
-          <p id="statusText" class="status-text">กำลังคำนวณเวลา...</p>
-          <p class="timezone-pill">Timezone: Asia/Bangkok (UTC+7)</p>
-        </div>
+            <div class="meme-frame">
+              <iframe
+                id="memeEmbed"
+                class="giphy-embed"
+                src="https://giphy.com/embed/9UTV80HsdjDuNFOUdU"
+                title="Office meme"
+                loading="lazy"
+                allowfullscreen
+              ></iframe>
+            </div>
 
-        <div class="actions">
-          <button id="shareButton" class="primary-button" type="button">
-            คัดลอกลิงก์ไว้แชร์ทีม
-          </button>
+            <div class="meme-footer">
+              <p id="memeCaption" class="meme-caption">Mood ตอนนี้: caffeinated but fragile</p>
+              <a
+                id="memeLink"
+                class="meme-link"
+                href="https://giphy.com/gifs/Barbie-barbie-barbieitt-it-takes-two-9UTV80HsdjDuNFOUdU"
+                target="_blank"
+                rel="noreferrer"
+              >
+                เปิดมีมบน Giphy
+              </a>
+            </div>
+          </aside>
         </div>
       </section>
     </main>

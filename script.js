@@ -11,40 +11,52 @@ const statusTextEl = document.getElementById("statusText");
 const shareButton = document.getElementById("shareButton");
 const progressFillEl = document.getElementById("progressFill");
 const progressPercentEl = document.getElementById("progressPercent");
-const memeFaceEl = document.getElementById("memeFace");
 const memeTitleEl = document.getElementById("memeTitle");
 const memeTextEl = document.getElementById("memeText");
+const memeEmbedEl = document.getElementById("memeEmbed");
+const memeCaptionEl = document.getElementById("memeCaption");
+const memeLinkEl = document.getElementById("memeLink");
 
 const MEME_STAGES = [
   {
     min: 0,
     title: "กำลังบูตสมองทีมแชตบอต",
     text: "กาแฟเข้าระบบแล้ว เหลือแค่ประชุมกับบั๊กให้จบก่อน 17:30",
-    face: "(-_-)",
+    caption: "Mood ตอนนี้: caffeinated but fragile",
+    embed: "https://giphy.com/embed/9UTV80HsdjDuNFOUdU",
+    link: "https://giphy.com/gifs/Barbie-barbie-barbieitt-it-takes-two-9UTV80HsdjDuNFOUdU",
   },
   {
     min: 25,
     title: "เริ่มไหลลื่น แต่ยังไม่กล้าปิด Slack",
     text: "งานเดินแล้ว แต่ notification ยังพร้อมโผล่มาได้ทุกเมื่อ",
-    face: "(._.)",
+    caption: "Mood ตอนนี้: one more ping and it's over",
+    embed: "https://giphy.com/embed/3o7TKTDn976rzVgky4",
+    link: "https://giphy.com/gifs/reactiongifs-3o7TKTDn976rzVgky4",
   },
   {
     min: 50,
     title: "เข้าโหมดนับชั่วโมงแบบมืออาชีพ",
     text: "ทุกคนเริ่มพูดคำว่า 'อันนี้ขอพรุ่งนี้ได้ไหม' มากขึ้นอย่างมีนัยสำคัญ",
-    face: "(o_o)",
+    caption: "Mood ตอนนี้: productivity กับความง่วงกำลังตีสูสี",
+    embed: "https://giphy.com/embed/l4FGpP4lxGGgK5CBW",
+    link: "https://giphy.com/gifs/theoffice-the-office-tv-l4FGpP4lxGGgK5CBW",
   },
   {
     min: 75,
     title: "เก็บของในใจไปแล้วครึ่งทีม",
     text: "แท็บงานยังเปิดอยู่ แต่จิตวิญญาณยืนรอลิฟต์ตั้งแต่เมื่อกี้แล้ว",
-    face: "(^_^)",
+    caption: "Mood ตอนนี้: almost weekend energy",
+    embed: "https://giphy.com/embed/LXfpI3nNbfCm91llsA",
+    link: "https://giphy.com/gifs/LXfpI3nNbfCm91llsA",
   },
   {
     min: 100,
     title: "เลิกงานแล้ว ทีมแชตบอตเป็นอิสระ",
     text: "ปิดโน้ตบุ๊กได้แบบไม่ต้องรู้สึกผิด แล้วค่อยสู้กับ prompt ต่อพรุ่งนี้",
-    face: "(^o^)/",
+    caption: "Mood ตอนนี้: it's friiidaaay",
+    embed: "https://giphy.com/embed/393kszFi2PuCEopURN",
+    link: "https://giphy.com/gifs/its-friday-393kszFi2PuCEopURN",
   },
 ];
 
@@ -136,16 +148,22 @@ function getWorkdayProgress() {
 
 function updateProgress(progress) {
   const rounded = Math.round(progress);
-  progressFillEl.style.width = `${rounded}%`;
+  progressFillEl.style.width = `${Math.max(rounded, 8)}%`;
   progressPercentEl.textContent = `${rounded}%`;
   progressFillEl.parentElement.setAttribute("aria-valuenow", String(rounded));
 
   const stage =
     [...MEME_STAGES].reverse().find((item) => rounded >= item.min) || MEME_STAGES[0];
 
-  memeFaceEl.textContent = stage.face;
   memeTitleEl.textContent = stage.title;
   memeTextEl.textContent = stage.text;
+  memeCaptionEl.textContent = stage.caption;
+
+  if (memeEmbedEl.src !== stage.embed) {
+    memeEmbedEl.src = stage.embed;
+  }
+
+  memeLinkEl.href = stage.link;
 }
 
 function formatThaiDate() {

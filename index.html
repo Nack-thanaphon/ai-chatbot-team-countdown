@@ -41,6 +41,35 @@
           </div>
         </div>
 
+        <section class="progress-section" aria-label="ความคืบหน้าของวันทำงาน">
+          <div class="progress-header">
+            <p class="progress-title">Workday Progress</p>
+            <p id="progressPercent" class="progress-percent">0%</p>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div id="progressFill" class="progress-fill">
+              <span class="progress-bot">BOT</span>
+            </div>
+          </div>
+          <div class="progress-meta">
+            <span>09:00</span>
+            <span>17:30</span>
+          </div>
+        </section>
+
+        <section class="meme-section" aria-live="polite">
+          <div class="meme-visual">
+            <p id="memeFace" class="meme-face">(-_-)</p>
+          </div>
+          <div class="meme-copy">
+            <p class="meme-label">Mood Progress</p>
+            <h2 id="memeTitle">กำลังบูตสมองทีมแชตบอต</h2>
+            <p id="memeText" class="meme-text">
+              กาแฟเข้าระบบแล้ว เหลือแค่ประชุมกับบั๊กให้จบก่อน 17:30
+            </p>
+          </div>
+        </section>
+
         <div class="status-panel">
           <p id="statusText" class="status-text">กำลังคำนวณเวลา...</p>
           <p class="timezone-pill">Timezone: Asia/Bangkok (UTC+7)</p>

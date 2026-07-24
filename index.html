@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Chatbot Team Countdown</title>
+    <meta
+      name="description"
+      content="นับถอยหลังเวลาเลิกงาน 17:30 ตามเวลาไทยสำหรับทีม AI Chatbot"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-card">
+        <p class="eyebrow">AI CHATBOT TEAM</p>
+        <h1>Countdown เลิกงาน</h1>
+        <p class="subtitle">
+          ปักเวลาเลิกงานไว้ที่ <strong>17:30 น.</strong> ตามเวลาไทย
+          แล้วปล่อยให้หน้านี้นับถอยหลังให้เอง
+        </p>
+
+        <div class="countdown" aria-live="polite">
+          <div class="time-box">
+            <span id="hours" class="time-value">00</span>
+            <span class="time-label">ชั่วโมง</span>
+          </div>
+          <div class="time-box">
+            <span id="minutes" class="time-value">00</span>
+            <span class="time-label">นาที</span>
+          </div>
+          <div class="time-box">
+            <span id="seconds" class="time-value">00</span>
+            <span class="time-label">วินาที</span>
+          </div>
+        </div>
+
+        <div class="status-panel">
+          <p id="statusText" class="status-text">กำลังคำนวณเวลา...</p>
+          <p class="timezone-pill">Timezone: Asia/Bangkok (UTC+7)</p>
+        </div>
+
+        <div class="actions">
+          <button id="shareButton" class="primary-button" type="button">
+            คัดลอกลิงก์ไว้แชร์ทีม
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

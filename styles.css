@@ -1,0 +1,167 @@
+:root {
+  color-scheme: light;
+  --bg-top: #fff6df;
+  --bg-bottom: #ffc98b;
+  --card: rgba(255, 252, 245, 0.82);
+  --card-border: rgba(126, 75, 30, 0.12);
+  --text-main: #24160d;
+  --text-soft: #6f533d;
+  --accent: #ff6b35;
+  --accent-dark: #d94f1a;
+  --shadow: 0 24px 80px rgba(106, 53, 19, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Noto Sans Thai", "Space Grotesk", sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(255, 108, 53, 0.25), transparent 24%),
+    linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.hero-card {
+  width: min(100%, 760px);
+  padding: 32px;
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--accent-dark);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  line-height: 0.98;
+}
+
+.subtitle {
+  margin: 18px 0 0;
+  max-width: 48ch;
+  color: var(--text-soft);
+  font-size: 1.05rem;
+}
+
+.countdown {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.time-box {
+  padding: 22px 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(126, 75, 30, 0.08);
+  text-align: center;
+}
+
+.time-value {
+  display: block;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.5rem, 7vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.time-label {
+  display: block;
+  margin-top: 10px;
+  color: var(--text-soft);
+  font-size: 0.98rem;
+}
+
+.status-panel {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status-text {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.timezone-pill {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 107, 53, 0.1);
+  color: var(--accent-dark);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.actions {
+  margin-top: 24px;
+}
+
+.primary-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 12px 32px rgba(217, 79, 26, 0.28);
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 36px rgba(217, 79, 26, 0.34);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 680px) {
+  .hero-card {
+    padding: 24px;
+  }
+
+  .countdown {
+    grid-template-columns: 1fr;
+  }
+
+  .status-panel {
+    align-items: flex-start;
+  }
+
+  .primary-button {
+    width: 100%;
+  }
+}

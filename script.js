@@ -12,75 +12,78 @@ const shareButton = document.getElementById("shareButton");
 const progressFillEl = document.getElementById("progressFill");
 const progressPercentEl = document.getElementById("progressPercent");
 const progressStatusEl = document.getElementById("progressStatus");
-const memeTitleEl = document.getElementById("memeTitle");
-const memeTextEl = document.getElementById("memeText");
-const memeImageEl = document.getElementById("memeImage");
-const memeCaptionEl = document.getElementById("memeCaption");
 const memeLinkEl = document.getElementById("memeLink");
 const shuffleMemeButton = document.getElementById("shuffleMemeButton");
+const memePrimaryImageEl = document.getElementById("memePrimaryImage");
+const memePrimaryLinkEl = document.getElementById("memePrimaryLink");
+const memeSecondaryImageEls = [
+  document.getElementById("memeSecondaryImage1"),
+  document.getElementById("memeSecondaryImage2"),
+  document.getElementById("memeSecondaryImage3"),
+];
+const memeSecondaryLinkEls = [
+  document.getElementById("memeSecondaryLink1"),
+  document.getElementById("memeSecondaryLink2"),
+  document.getElementById("memeSecondaryLink3"),
+];
 
 const MEME_POOL = [
   {
     image:
       "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/PFU8k1XXgytJVWZykC/giphy.gif",
-    link: "https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99",
-    caption: "สุ่มจากกองมีมเลิกงาน: วิญญาณพร้อมกลับบ้านก่อนตัวจริง",
+    link: "https://giphy.com/gifs/PFU8k1XXgytJVWZykC",
   },
   {
     image:
       "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/q4QfjGnFKryzjosj1g/giphy.gif",
-    link: "https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99",
-    caption: "สุ่มจากกองมีมเลิกงาน: ถ้า message ใหม่เด้งอีกคือร้องจริง",
+    link: "https://giphy.com/gifs/q4QfjGnFKryzjosj1g",
   },
   {
     image:
       "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xUA7b30EbtkaMHvRgk/giphy.gif",
-    link: "https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99",
-    caption: "สุ่มจากกองมีมเลิกงาน: ใกล้เวลาแล้ว พลังเต้นเริ่มมา",
+    link: "https://giphy.com/gifs/xUA7b30EbtkaMHvRgk",
   },
   {
     image:
       "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0MYt5jPR6QX5pnqM/giphy.gif",
-    link: "https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99",
-    caption: "สุ่มจากกองมีมเลิกงาน: จิตใจ checkout ไปแล้ว เหลือแต่ cursor",
+    link: "https://giphy.com/gifs/l0MYt5jPR6QX5pnqM",
   },
   {
     image:
       "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6ZsY8f6iY7Rr5fDG/giphy.gif",
-    link: "https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99",
-    caption: "สุ่มจากกองมีมเลิกงาน: อีกนิดเดียวก็ได้ประกาศอิสรภาพ",
+    link: "https://giphy.com/gifs/3o6ZsY8f6iY7Rr5fDG",
+  },
+  {
+    image:
+      "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/12XDYvMJNcmLgQ/giphy.gif",
+    link: "https://giphy.com/gifs/12XDYvMJNcmLgQ",
+  },
+  {
+    image:
+      "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11gC4odpiRKuha/giphy.gif",
+    link: "https://giphy.com/gifs/11gC4odpiRKuha",
+  },
+  {
+    image:
+      "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LmNwrBhejkK9EFP504/giphy.gif",
+    link: "https://giphy.com/gifs/LmNwrBhejkK9EFP504",
+  },
+  {
+    image:
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26u4cqiYI30juCOGY/giphy.gif",
+    link: "https://giphy.com/gifs/26u4cqiYI30juCOGY",
+  },
+  {
+    image:
+      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0HlBO7eyXzSZkJri/giphy.gif",
+    link: "https://giphy.com/gifs/l0HlBO7eyXzSZkJri",
+  },
+  {
+    image:
+      "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26ufdipQqU2lhNA4g/giphy.gif",
+    link: "https://giphy.com/gifs/26ufdipQqU2lhNA4g",
   },
 ];
-
-const MEME_STAGES = [
-  {
-    min: 0,
-    title: "กำลังบูตสมองทีมแชตบอต",
-    text: "กาแฟเข้าระบบแล้ว เหลือแค่ประชุมกับบั๊กให้จบก่อน 17:30",
-  },
-  {
-    min: 25,
-    title: "เริ่มไหลลื่น แต่ยังไม่กล้าปิด Slack",
-    text: "งานเดินแล้ว แต่ notification ยังพร้อมโผล่มาได้ทุกเมื่อ",
-  },
-  {
-    min: 50,
-    title: "เข้าโหมดนับชั่วโมงแบบมืออาชีพ",
-    text: "ทุกคนเริ่มพูดคำว่า 'อันนี้ขอพรุ่งนี้ได้ไหม' มากขึ้นอย่างมีนัยสำคัญ",
-  },
-  {
-    min: 75,
-    title: "เก็บของในใจไปแล้วครึ่งทีม",
-    text: "แท็บงานยังเปิดอยู่ แต่จิตวิญญาณยืนรอลิฟต์ตั้งแต่เมื่อกี้แล้ว",
-  },
-  {
-    min: 100,
-    title: "เลิกงานแล้ว ทีมแชตบอตเป็นอิสระ",
-    text: "ปิดโน้ตบุ๊กได้แบบไม่ต้องรู้สึกผิด แล้วค่อยสู้กับ prompt ต่อพรุ่งนี้",
-  },
-];
-
-let activeMemeIndex = -1;
 
 function getBangkokDateParts(date = new Date()) {
   const formatter = new Intl.DateTimeFormat("en-CA", {
@@ -169,22 +172,28 @@ function getWorkdayProgress() {
 }
 
 function setRandomMeme() {
-  if (MEME_POOL.length === 0) {
+  if (MEME_POOL.length < 4) {
     return;
   }
 
-  let nextIndex = Math.floor(Math.random() * MEME_POOL.length);
+  const pool = [...MEME_POOL];
+  const selectedMemes = [];
 
-  if (MEME_POOL.length > 1 && nextIndex === activeMemeIndex) {
-    nextIndex = (nextIndex + 1) % MEME_POOL.length;
+  while (selectedMemes.length < 4 && pool.length > 0) {
+    const nextIndex = Math.floor(Math.random() * pool.length);
+    selectedMemes.push(pool.splice(nextIndex, 1)[0]);
   }
 
-  activeMemeIndex = nextIndex;
+  const [primaryMeme, ...secondaryMemes] = selectedMemes;
 
-  const meme = MEME_POOL[nextIndex];
-  memeImageEl.src = meme.image;
-  memeLinkEl.href = meme.link;
-  memeCaptionEl.textContent = meme.caption;
+  memePrimaryImageEl.src = primaryMeme.image;
+  memePrimaryLinkEl.href = primaryMeme.link;
+  memeLinkEl.href = primaryMeme.link;
+
+  secondaryMemes.forEach((meme, index) => {
+    memeSecondaryImageEls[index].src = meme.image;
+    memeSecondaryLinkEls[index].href = meme.link;
+  });
 }
 
 function updateProgress(progress) {
@@ -192,24 +201,6 @@ function updateProgress(progress) {
   progressFillEl.style.width = `${Math.max(rounded, 8)}%`;
   progressPercentEl.textContent = `${rounded}%`;
   progressFillEl.parentElement.setAttribute("aria-valuenow", String(rounded));
-
-  const stage =
-    [...MEME_STAGES].reverse().find((item) => rounded >= item.min) || MEME_STAGES[0];
-
-  memeTitleEl.textContent = stage.title;
-  memeTextEl.textContent = stage.text;
-
-  if (rounded <= 0) {
-    progressStatusEl.textContent = "เริ่มนับหลัง 09:30";
-    return;
-  }
-
-  if (rounded >= 100) {
-    progressStatusEl.textContent = "ถึงเส้นชัย 17:30 แล้ว";
-    return;
-  }
-
-  progressStatusEl.textContent = "กาแฟกำลังพาทีมไปสู่เวลาเลิกงาน";
 }
 
 function formatThaiDate() {

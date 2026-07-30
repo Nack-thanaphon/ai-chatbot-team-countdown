@@ -1,6 +1,10 @@
 const TIMEZONE = "Asia/Bangkok";
 const WORK_START_HOUR = 9;
 const WORK_START_MINUTE = 30;
+const LUNCH_START_HOUR = 12;
+const LUNCH_START_MINUTE = 0;
+const LUNCH_END_HOUR = 13;
+const LUNCH_END_MINUTE = 15;
 const TARGET_HOUR = 17;
 const TARGET_MINUTE = 30;
 
@@ -11,77 +15,55 @@ const statusTextEl = document.getElementById("statusText");
 const shareButton = document.getElementById("shareButton");
 const progressFillEl = document.getElementById("progressFill");
 const progressPercentEl = document.getElementById("progressPercent");
-const progressStatusEl = document.getElementById("progressStatus");
-const memeLinkEl = document.getElementById("memeLink");
 const shuffleMemeButton = document.getElementById("shuffleMemeButton");
 const memePrimaryImageEl = document.getElementById("memePrimaryImage");
 const memePrimaryLinkEl = document.getElementById("memePrimaryLink");
-const memeSecondaryImageEls = [
-  document.getElementById("memeSecondaryImage1"),
-  document.getElementById("memeSecondaryImage2"),
-  document.getElementById("memeSecondaryImage3"),
-];
-const memeSecondaryLinkEls = [
-  document.getElementById("memeSecondaryLink1"),
-  document.getElementById("memeSecondaryLink2"),
-  document.getElementById("memeSecondaryLink3"),
-];
 
 const MEME_POOL = [
   {
     image:
-      "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/PFU8k1XXgytJVWZykC/giphy.gif",
-    link: "https://giphy.com/gifs/PFU8k1XXgytJVWZykC",
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2p3aXg4ZHoxaDdqNXdjYnJvNXc0bmtjZDcxeHE3cHJyeHNmb2xiNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EtB1yylKGGAUg/giphy.gif",
+    link: "https://giphy.com/gifs/EtB1yylKGGAUg",
   },
   {
     image:
-      "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/q4QfjGnFKryzjosj1g/giphy.gif",
-    link: "https://giphy.com/gifs/q4QfjGnFKryzjosj1g",
+      "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dTNoNGlyaDJiczhxajZ1MDV3b3dmbHE3Y2V3YXB0eXZtNW5qb3d4YyZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/M11UVCRrc0LUk/giphy.gif",
+    link: "https://giphy.com/gifs/M11UVCRrc0LUk",
   },
   {
     image:
-      "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xUA7b30EbtkaMHvRgk/giphy.gif",
-    link: "https://giphy.com/gifs/xUA7b30EbtkaMHvRgk",
+      "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dTNoNGlyaDJiczhxajZ1MDV3b3dmbHE3Y2V3YXB0eXZtNW5qb3d4YyZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/xiAqCzbB3eZvG/giphy.gif",
+    link: "https://giphy.com/gifs/xiAqCzbB3eZvG",
   },
   {
     image:
-      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0MYt5jPR6QX5pnqM/giphy.gif",
-    link: "https://giphy.com/gifs/l0MYt5jPR6QX5pnqM",
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmxiemQ3cHpzaWIyZjVhOG01M2l1dG1qcDB4Mzd0NDR2eGdwazlndiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LTyOTsYnsgidO/giphy.gif",
+    link: "https://giphy.com/gifs/LTyOTsYnsgidO",
   },
   {
     image:
-      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6ZsY8f6iY7Rr5fDG/giphy.gif",
-    link: "https://giphy.com/gifs/3o6ZsY8f6iY7Rr5fDG",
+      "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dTNoNGlyaDJiczhxajZ1MDV3b3dmbHE3Y2V3YXB0eXZtNW5qb3d4YyZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/KLO1hNEky1fMc/giphy.gif",
+    link: "https://giphy.com/gifs/KLO1hNEky1fMc",
   },
   {
     image:
-      "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/12XDYvMJNcmLgQ/giphy.gif",
-    link: "https://giphy.com/gifs/12XDYvMJNcmLgQ",
+      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXJlMmJvbzFsa2h6MDFjNHRzOWlpeHYzOThla3ZnZGZ3YXpscGJuayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/6RIFKaxkSMv3AxGviq/giphy.gif",
+    link: "https://giphy.com/gifs/6RIFKaxkSMv3AxGviq",
   },
   {
     image:
-      "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11gC4odpiRKuha/giphy.gif",
-    link: "https://giphy.com/gifs/11gC4odpiRKuha",
+      "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3bmN6N2o0bDAyeW1mNmh5MWlsN3k3bXphamY0ZnU5b3hjdTBpbzM1NyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/q5wGGn2XrwWDJA7yQs/giphy.gif",
+    link: "https://giphy.com/gifs/q5wGGn2XrwWDJA7yQs",
   },
   {
     image:
-      "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LmNwrBhejkK9EFP504/giphy.gif",
-    link: "https://giphy.com/gifs/LmNwrBhejkK9EFP504",
+      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjM0aHByNXk4OHBwam5rYjVoN3Bodml4azZwNDhmb2NsaDdkYmw0cCZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/kE9KzuKjCgKX45P6Ud/giphy.gif",
+    link: "https://giphy.com/gifs/kE9KzuKjCgKX45P6Ud",
   },
   {
     image:
-      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26u4cqiYI30juCOGY/giphy.gif",
-    link: "https://giphy.com/gifs/26u4cqiYI30juCOGY",
-  },
-  {
-    image:
-      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0HlBO7eyXzSZkJri/giphy.gif",
-    link: "https://giphy.com/gifs/l0HlBO7eyXzSZkJri",
-  },
-  {
-    image:
-      "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26ufdipQqU2lhNA4g/giphy.gif",
-    link: "https://giphy.com/gifs/26ufdipQqU2lhNA4g",
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExazc3cnl3bzh6dGptemNuZnloZmhqY2xrZGlqbTB3YjN5b3dkY25jeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4GWmvKBiml8vPQUchI/giphy.gif",
+    link: "https://giphy.com/gifs/4GWmvKBiml8vPQUchI",
   },
 ];
 
@@ -158,7 +140,10 @@ function getWorkdayProgress() {
   const localNowMs = bangkokNowMs();
   const startMs = workdayBoundaryMs(WORK_START_HOUR, WORK_START_MINUTE);
   const endMs = workdayBoundaryMs(TARGET_HOUR, TARGET_MINUTE);
-  const spanMs = endMs - startMs;
+  const lunchStartMs = workdayBoundaryMs(LUNCH_START_HOUR, LUNCH_START_MINUTE);
+  const lunchEndMs = workdayBoundaryMs(LUNCH_END_HOUR, LUNCH_END_MINUTE);
+  const lunchSpanMs = lunchEndMs - lunchStartMs;
+  const spanMs = endMs - startMs - lunchSpanMs;
 
   if (localNowMs <= startMs) {
     return 0;
@@ -168,32 +153,35 @@ function getWorkdayProgress() {
     return 100;
   }
 
-  return ((localNowMs - startMs) / spanMs) * 100;
+  let elapsedMs = localNowMs - startMs;
+
+  if (localNowMs >= lunchStartMs && localNowMs < lunchEndMs) {
+    elapsedMs = lunchStartMs - startMs;
+  } else if (localNowMs >= lunchEndMs) {
+    elapsedMs -= lunchSpanMs;
+  }
+
+  return (elapsedMs / spanMs) * 100;
+}
+
+function isLunchBreak() {
+  const localNowMs = bangkokNowMs();
+  const lunchStartMs = workdayBoundaryMs(LUNCH_START_HOUR, LUNCH_START_MINUTE);
+  const lunchEndMs = workdayBoundaryMs(LUNCH_END_HOUR, LUNCH_END_MINUTE);
+
+  return localNowMs >= lunchStartMs && localNowMs < lunchEndMs;
 }
 
 function setRandomMeme() {
-  if (MEME_POOL.length < 4) {
+  if (MEME_POOL.length === 0) {
     return;
   }
 
-  const pool = [...MEME_POOL];
-  const selectedMemes = [];
+  const randomIndex = Math.floor(Math.random() * MEME_POOL.length);
+  const meme = MEME_POOL[randomIndex];
 
-  while (selectedMemes.length < 4 && pool.length > 0) {
-    const nextIndex = Math.floor(Math.random() * pool.length);
-    selectedMemes.push(pool.splice(nextIndex, 1)[0]);
-  }
-
-  const [primaryMeme, ...secondaryMemes] = selectedMemes;
-
-  memePrimaryImageEl.src = primaryMeme.image;
-  memePrimaryLinkEl.href = primaryMeme.link;
-  memeLinkEl.href = primaryMeme.link;
-
-  secondaryMemes.forEach((meme, index) => {
-    memeSecondaryImageEls[index].src = meme.image;
-    memeSecondaryLinkEls[index].href = meme.link;
-  });
+  memePrimaryImageEl.src = meme.image;
+  memePrimaryLinkEl.href = meme.link;
 }
 
 function updateProgress(progress) {
@@ -227,6 +215,11 @@ function updateCountdown() {
 
   if (totalSeconds === 0) {
     statusTextEl.textContent = "ถึงเวลาเลิกงานแล้ว พักได้เลย";
+    return;
+  }
+
+  if (isLunchBreak()) {
+    statusTextEl.textContent = "พักเที่ยง 12:00 - 13:15 กินข้าวให้อร่อย";
     return;
   }
 

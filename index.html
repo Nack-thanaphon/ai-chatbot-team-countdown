@@ -8,6 +8,22 @@
       name="description"
       content="นับถอยหลังเวลาเลิกงาน 17:30 ตามเวลาไทยสำหรับทีม AI Chatbot"
     />
+    <meta property="og:title" content="AI Chatbot Team Countdown" />
+    <meta
+      property="og:description"
+      content="นับถอยหลังเวลาเลิกงาน 17:30 ตามเวลาไทยสำหรับทีม AI Chatbot"
+    />
+    <meta property="og:image" content="image.png" />
+    <meta property="og:image:width" content="1858" />
+    <meta property="og:image:height" content="1104" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI Chatbot Team Countdown" />
+    <meta
+      name="twitter:description"
+      content="นับถอยหลังเวลาเลิกงาน 17:30 ตามเวลาไทยสำหรับทีม AI Chatbot"
+    />
+    <meta name="twitter:image" content="image.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,7 +37,7 @@
       <section class="hero-card">
         <div class="hero-grid">
           <div class="content-column">
-            <p class="eyebrow">AI CHATBOT TEAM</p>
+            <!-- <p class="eyebrow">AI CHATBOT TEAM</p> -->
             <h1>Countdown เลิกงาน</h1>
 
             <div class="countdown" aria-live="polite">
@@ -41,7 +57,6 @@
 
             <section class="progress-section" aria-label="ความคืบหน้าของวันทำงาน">
               <div class="progress-header">
-                <p id="progressStatus" class="progress-status">09:30 - 17:30</p>
                 <p id="progressPercent" class="progress-percent">0%</p>
               </div>
               <div
@@ -52,18 +67,26 @@
                 aria-valuenow="0"
               >
                 <div id="progressFill" class="progress-fill">
-                  <span class="progress-coffee">☕</span>
+                  <span class="progress-coffee">
+                    <img
+                      src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnE5b3pvN2M1YXBoMmg5a3J6bm5uZW55eWs0bmRianU2MjVlMHQ3ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/32XlENUo1ZSG0gK43h/giphy.gif"
+                      alt="burning focus"
+                      width="56"
+                      height="56"
+                    />
+                  </span>
                 </div>
               </div>
               <div class="progress-meta">
                 <span>09:30</span>
+                <span class="lunch-break">พักเที่ยง 12:00 - 13:15</span>
                 <span>17:30</span>
               </div>
             </section>
 
             <div class="status-panel">
               <p id="statusText" class="status-text">กำลังคำนวณเวลา...</p>
-              <p class="timezone-pill">Timezone: Asia/Bangkok (UTC+7)</p>
+              <p class="timezone-pill">Timezone: Asia/Bangkok</p>
             </div>
 
             <div class="actions">
@@ -75,7 +98,7 @@
 
           <aside class="meme-stage-card" aria-live="polite">
             <div class="meme-topbar">
-              <p class="meme-label">MEME WALL</p>
+              <!-- <p class="meme-label">MEME WALL</p> -->
               <button id="shuffleMemeButton" class="ghost-button" type="button">
                 สุ่มใหม่
               </button>
@@ -85,77 +108,17 @@
               <a
                 id="memePrimaryLink"
                 class="meme-frame meme-frame-primary"
-                href="https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99"
+                href="https://giphy.com/gifs/EtB1yylKGGAUg"
                 target="_blank"
                 rel="noreferrer"
               >
                 <img
                   id="memePrimaryImage"
                   class="meme-image"
-                  src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/PFU8k1XXgytJVWZykC/giphy.gif"
+                  src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2p3aXg4ZHoxaDdqNXdjYnJvNXc0bmtjZDcxeHE3cHJyeHNmb2xiNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EtB1yylKGGAUg/giphy.gif"
                   alt="Random quitting time meme"
                   loading="lazy"
                 />
-              </a>
-
-              <div class="meme-stack">
-                <a
-                  id="memeSecondaryLink1"
-                  class="meme-frame meme-frame-secondary"
-                  href="https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    id="memeSecondaryImage1"
-                    class="meme-image meme-image-secondary"
-                    src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/q4QfjGnFKryzjosj1g/giphy.gif"
-                    alt="Random quitting time meme"
-                    loading="lazy"
-                  />
-                </a>
-                <a
-                  id="memeSecondaryLink2"
-                  class="meme-frame meme-frame-secondary"
-                  href="https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    id="memeSecondaryImage2"
-                    class="meme-image meme-image-secondary"
-                    src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xUA7b30EbtkaMHvRgk/giphy.gif"
-                    alt="Random quitting time meme"
-                    loading="lazy"
-                  />
-                </a>
-                <a
-                  id="memeSecondaryLink3"
-                  class="meme-frame meme-frame-secondary"
-                  href="https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    id="memeSecondaryImage3"
-                    class="meme-image meme-image-secondary"
-                    src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzc2ZHRwYTFoZGJ5d2Y1Z2h1dnlzbmpuYjlzODE2ZW9zcm5uMThuaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0MYt5jPR6QX5pnqM/giphy.gif"
-                    alt="Random quitting time meme"
-                    loading="lazy"
-                  />
-                </a>
-              </div>
-            </div>
-
-            <div class="meme-footer">
-              <a
-                id="memeLink"
-                class="meme-link"
-                href="https://giphy.com/search/%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%87%E0%B8%B2%E0%B8%99"
-                target="_blank"
-                rel="noreferrer"
-              >
-                เปิด Giphy
               </a>
             </div>
           </aside>

@@ -48,7 +48,7 @@ body {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
   gap: 26px;
   align-items: stretch;
 }
@@ -69,7 +69,7 @@ body {
 
 h1 {
   margin: 0;
-  font-size: clamp(2.4rem, 5vw, 5rem);
+  font-size: 3rem;
   line-height: 0.96;
 }
 
@@ -114,7 +114,6 @@ h1 {
 
 .progress-header,
 .progress-meta,
-.meme-footer,
 .status-panel {
   display: flex;
   align-items: center;
@@ -143,8 +142,8 @@ h1 {
 .progress-track {
   margin-top: 14px;
   width: 100%;
-  height: 24px;
-  overflow: hidden;
+  height: 32px;
+  overflow: visible;
   border-radius: 999px;
   background:
     linear-gradient(90deg, rgba(255, 107, 53, 0.15), rgba(255, 107, 53, 0.04)),
@@ -160,7 +159,7 @@ h1 {
   min-width: 56px;
   max-width: 100%;
   height: 100%;
-  padding-right: 6px;
+  /* padding-right: 1px; */
   border-radius: inherit;
   background: linear-gradient(90deg, #ff9a62, #ff6b35 62%, #d94f1a);
   transition: width 0.6s ease;
@@ -170,13 +169,20 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 56px;
+  height: 56px;
   border-radius: 999px;
+  overflow: hidden;
+  flex-shrink: 0;
   background: rgba(255, 255, 255, 0.88);
-  color: var(--accent-dark);
-  font-size: 1rem;
-  box-shadow: 0 8px 18px rgba(120, 52, 18, 0.18);
+  box-shadow: 0 4px 10px rgba(120, 52, 18, 0.18);
+}
+
+.progress-coffee img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .progress-meta {
@@ -184,6 +190,16 @@ h1 {
   color: var(--text-soft);
   font-family: "Space Grotesk", sans-serif;
   font-size: 0.9rem;
+}
+
+.lunch-break {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 107, 53, 0.12);
+  color: var(--accent-dark);
+  font-weight: 700;
+  font-size: 0.82rem;
+  white-space: nowrap;
 }
 
 .meme-stage-card {
@@ -219,9 +235,11 @@ h1 {
 
 .meme-wall {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) 126px;
+  grid-template-columns: 1fr;
   gap: 12px;
   align-items: stretch;
+  flex: 1;
+  min-height: 0;
 }
 
 .meme-frame {
@@ -246,24 +264,14 @@ h1 {
 }
 
 .meme-frame-primary {
+  height: 100%;
   min-height: 100%;
-}
-
-.meme-stack {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.meme-frame-secondary {
-  min-height: 0;
 }
 
 .meme-image {
   display: block;
   width: 100%;
   height: 100%;
-  aspect-ratio: 4 / 5;
   object-fit: cover;
 }
 
@@ -280,18 +288,6 @@ h1 {
 
 .ghost-button:hover {
   background: rgba(255, 255, 255, 0.95);
-}
-
-.meme-link {
-  color: var(--accent-strong);
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 0.92rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.meme-link:hover {
-  text-decoration: underline;
 }
 
 .status-panel {
@@ -349,11 +345,6 @@ h1 {
 
   .meme-wall {
     grid-template-columns: 1fr;
-  }
-
-  .meme-stack {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
   }
 }
 
